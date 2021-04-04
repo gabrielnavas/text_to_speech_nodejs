@@ -2,7 +2,7 @@ const gTTS = require('gtts')
 const mpg123 = require('mpg123')
 const path = require('path')
 
-const textToSpeech= (text) => {
+const textToSpeech= (text, fileTempName) => {
   const textToSpeech = (text, fileName) => {
     var gtts = new gTTS(text, 'en')
     const fileNameWithExtension = `${fileName}.mp3`
@@ -14,11 +14,11 @@ const textToSpeech= (text) => {
   
   const playMp3 = (fileName) => {
     const player = new mpg123.MpgPlayer();
-    player.play(`${path.join(__dirname, fileName)}.mp3`)
+    const filePath = `${path.join(__dirname, fileName)}.mp3`
+    player.play(filePath)
   }
 
-  const fileTempName = 'fileTemp'
-  textToSpeech(text, 'arq')
+  textToSpeech(text, fileTempName)
 }
 
 module.exports = textToSpeech
